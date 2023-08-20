@@ -8,12 +8,11 @@ export const SidebarMenu = styled.div`
   width: 117px;
   height: 100vh;
   padding: 0 1.7rem;
-  color: #fff;
+  color: #fffdfd;
   overflow: hidden;
   transition: all 0.5s linear;
   background-color: #fff;
 
-  box-shadow: 0px 19px 40px rgba(0, 0, 0, 0.09);
   &:hover {
     width: 270px;
     transition: 0.5s;
@@ -66,17 +65,17 @@ export const MainUl = styled.ul`
 
   span {
     overflow: hidden;
-    font-size: 17px;
+    font-size: 16px;
   }
 
   i {
-    font-size: 20px;
+    font-size: 16px;
   }
 `;
 
 export const MainContainer = styled.div`
   position: relative;
-  background: #e1e1e1;
+  background: #f7f7f7;
   width: 100%;
   padding: 1rem;
 `;
@@ -90,6 +89,7 @@ export const HeaderContainer = styled.div`
   border-radius: 10px;
   padding: 10px 2rem;
   margin-bottom: 1rem;
+  box-shadow: 0px 19px 40px rgba(0, 0, 0, 0.09);
 
   img {
     width: 50px;
@@ -134,18 +134,17 @@ export const BodyContainer = styled.div`
   background-color: #fff;
   padding: 2rem;
   border-radius: 10px;
+  box-shadow: 0px 19px 40px rgba(0, 0, 0, 0.09);
 `;
 
 export const TitleBody = styled.h2`
   color: #2e2e2e;
-  padding-bottom: 10px;
+  padding-bottom: 27px;
   font-size: 18px;
 `;
 
 export const CardContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
   width: 100%;
 `;
 
