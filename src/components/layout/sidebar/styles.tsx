@@ -11,7 +11,6 @@ export const SidebarMenu = styled.div`
   color: #fff;
   overflow: hidden;
   transition: all 0.5s linear;
-  /* background: rgba(113, 99, 186, 255); */
   background-color: #fff;
 
   box-shadow: 0px 19px 40px rgba(0, 0, 0, 0.09);
@@ -35,7 +34,7 @@ export const MainUl = styled.ul`
   height: 88%;
   position: relative;
   list-style: none;
-  padding: 0;
+  padding: 19px 0px 0px;
 
   li {
     padding: 1rem;
@@ -67,6 +66,7 @@ export const MainUl = styled.ul`
 
   span {
     overflow: hidden;
+    font-size: 17px;
   }
 
   i {
@@ -119,7 +119,42 @@ export const SearchBox = styled.div`
     padding: 10px;
   }
 
+  i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5 ease-out;
+  }
+
   i:hover {
     transform: scale(1.2);
   }
 `;
+
+export const BodyContainer = styled.div`
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+`;
+
+export const TitleBody = styled.h2`
+  color: #2e2e2e;
+  padding-bottom: 10px;
+  font-size: 18px;
+`;
+
+export const CardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+`;
+
+// export const PaymentCard = styled.div`
+//   background: rgb(229, 223, 223);
+//   border-radius: 10px;
+//   padding: 1.2rem;
+//   width: 100%;
+//   height: 150px;
+//   display: flex;
+//   flex-direction: column;
+// `;
