@@ -1,10 +1,25 @@
 'use client';
 import { Box, Button, Grid, TextField } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Sidebar } from '../layout/sidebar/Sidebar';
 
 export function ProdutosForm() {
+  const [codProduto, setCodProduto] = useState<string | undefined>('');
+  const [preco, setPreco] = useState<string>('');
+  const [nome, setNome] = useState<string | undefined>('');
+  const [descricao, setDescricao] = useState<string | undefined>('');
+
+  const send = () => {
+    const produto = {
+      codProduto,
+      preco,
+      nome,
+      descricao,
+    };
+
+    console.log(produto);
+  };
   return (
     <Sidebar titulo="Produtos" tituloCard="Cadastro de produtos">
       <Box width={'100%'}>
@@ -17,6 +32,8 @@ export function ProdutosForm() {
               type="text"
               placeholder="Digite o código do produto"
               style={{ width: '100%' }}
+              onChange={(e) => setCodProduto(e.target.value)}
+              value={codProduto}
             />
           </Grid>
 
@@ -25,9 +42,11 @@ export function ProdutosForm() {
               id="outlined-basic"
               label="Preço do Produto"
               variant="outlined"
-              type="number"
+              type="text"
               placeholder="Digite o preço do produto"
               style={{ width: '100%' }}
+              onChange={(e) => setPreco(e.target.value)}
+              value={preco}
             />
           </Grid>
         </Grid>
@@ -38,7 +57,9 @@ export function ProdutosForm() {
           variant="outlined"
           type="text"
           placeholder="Digite o nome do produto"
-          style={{ width: '100%', marginTop: '30px' }}
+          style={{ width: '100%', marginTop: '35px' }}
+          onChange={(e) => setNome(e.target.value)}
+          value={nome}
         />
 
         <TextField
@@ -49,7 +70,9 @@ export function ProdutosForm() {
           placeholder="Digite a descrição"
           multiline
           rows={4}
-          style={{ width: '100%', marginTop: '30px' }}
+          style={{ width: '100%', marginTop: '35px' }}
+          onChange={(e) => setDescricao(e.target.value)}
+          value={descricao}
         />
 
         <div style={{ marginTop: '30px' }}>
@@ -60,6 +83,7 @@ export function ProdutosForm() {
               backgroundColor: 'rgba(149, 198, 117, 255)',
               color: 'black',
             }}
+            onClick={send}
           >
             Salvar
           </Button>
