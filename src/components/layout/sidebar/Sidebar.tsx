@@ -1,3 +1,4 @@
+'use client';
 import { Icon } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -47,7 +48,7 @@ const TitleMenuLink = ({ icon, href, classLi, titleMenu }: LinkItemProps) => {
   );
 };
 
-export default function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps) {
+export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps) {
   return (
     <div style={{ display: 'flex' }}>
       <SidebarMenu>
@@ -56,9 +57,9 @@ export default function Sidebar({ children, titulo, subTitulo, tituloCard }: Lay
         </Logo>
 
         <MainUl>
-          <TitleMenuLink href="google.com.br" icon={AiFillHome} titleMenu="Home" classLi="active" />
+          <TitleMenuLink href="#" icon={AiFillHome} titleMenu="Home" classLi="active" />
 
-          <TitleMenuLink href="google.com.br" icon={FiShoppingCart} titleMenu="Produtos" />
+          <TitleMenuLink href="/consultas/produtos" icon={FiShoppingCart} titleMenu="Produtos" />
 
           <TitleMenuLink href="google.com.br" icon={FiUsers} titleMenu="Clientes" />
 
