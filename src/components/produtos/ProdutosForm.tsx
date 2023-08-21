@@ -2,29 +2,56 @@
 import { Box, Button, Grid } from '@mui/material';
 import React, { useState } from 'react';
 
+import { useProdutoService } from '@/http';
+import { Produto } from '@/models/produtos/produtosModel';
+
 import InputForm from '../common/InputForm';
 import { Sidebar } from '../layout/sidebar/Sidebar';
 
 export function ProdutosForm() {
+  const [id, setId] = useState<string>();
+  const [dataCadastro, setDataCadastro] = useState<string | undefined>('');
   const [codProduto, setCodProduto] = useState<string | undefined>('');
   const [preco, setPreco] = useState<string>('');
   const [nome, setNome] = useState<string | undefined>('');
   const [descricao, setDescricao] = useState<string | undefined>('');
 
+  const service = useProdutoService();
+
   const send = () => {
-    const produto = {
+    const produto: Produto = {
+      id: '0',
+      dataCadastro: '12/11/2000',
       codProduto,
-      preco,
+      preco: parseFloat(preco),
       nome,
       descricao,
     };
-
-    console.log(produto);
+    service.salvar(produto).then((succes) => {
+      setId(succes.id);
+      setDataCadastro(succes.dataCadastro);
+    });
   };
 
   return (
     <Sidebar titulo="Produtos" tituloCard="Cadastro de produtos">
       <Box width={'100%'}>
+        {id && (
+          <Grid container justifyContent={'space-between'} style={{ marginBottom: '30px' }}>
+            <Grid item width={'49%'}>
+              <InputForm label={'ID do Produto'} style={{ width: '100%' }} value={id} disabled />
+            </Grid>
+
+            <Grid item width={'49%'}>
+              <InputForm
+                label={'Data de Cadastro'}
+                style={{ width: '100%' }}
+                value={dataCadastro}
+                disabled
+              />
+            </Grid>
+          </Grid>
+        )}
         <Grid container justifyContent={'space-between'}>
           <Grid item width={'49%'}>
             <InputForm

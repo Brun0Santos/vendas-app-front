@@ -103,6 +103,10 @@ export const UserInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  div {
+    cursor: pointer;
+  }
 `;
 
 export const SearchBox = styled.div`
@@ -112,7 +116,8 @@ export const SearchBox = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 4px 12px;
+  padding: 5px 12px;
+  height: 37px;
 
   input {
     background: transparent;
@@ -120,7 +125,7 @@ export const SearchBox = styled.div`
   }
 
   i {
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.5 ease-out;
   }

@@ -1,5 +1,5 @@
 'use client';
-import { Icon } from '@mui/material';
+import { Avatar, Icon } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -85,7 +85,8 @@ export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps
               </i>
               <input type="text" placeholder="Search" />
             </SearchBox>
-            <Image src={'/student.png'} alt="Minha Imagem" width={300} height={300} />
+            {/* <Image src={'/student.png'} alt="Minha Imagem" width={300} height={300} /> */}
+            <Avatar>BR</Avatar>
           </UserInfo>
         </HeaderContainer>
 

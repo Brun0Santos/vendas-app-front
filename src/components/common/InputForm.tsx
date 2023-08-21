@@ -11,7 +11,7 @@ interface InputProps {
 function InputForm({ onChanges, label, placeholder, ...props }: InputProps & TextFieldProps) {
   return (
     <TextField
-      id="outlined-basic"
+      id="fullWidth"
       variant="outlined"
       type="text"
       label={label}
@@ -21,6 +21,7 @@ function InputForm({ onChanges, label, placeholder, ...props }: InputProps & Tex
           onChanges(e.target.value);
         }
       }}
+      size="small"
       {...props}
     />
   );
