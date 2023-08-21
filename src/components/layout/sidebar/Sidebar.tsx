@@ -57,7 +57,7 @@ export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps
         </Logo>
 
         <MainUl>
-          <TitleMenuLink href="#" icon={AiFillHome} titleMenu="Home" classLi="active" />
+          <TitleMenuLink href="/#" icon={AiFillHome} titleMenu="Home" classLi="active" />
 
           <TitleMenuLink href="/consultas/produtos" icon={FiShoppingCart} titleMenu="Produtos" />
 

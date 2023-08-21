@@ -2,6 +2,7 @@
 import { Box, Button, Grid, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
+import InputForm from '../common/InputForm';
 import { Sidebar } from '../layout/sidebar/Sidebar';
 
 export function ProdutosForm() {
@@ -25,7 +26,7 @@ export function ProdutosForm() {
       <Box width={'100%'}>
         <Grid container justifyContent={'space-between'}>
           <Grid item width={'49%'}>
-            <TextField
+            {/* <TextField
               id="outlined-basic"
               label="Código do Produto"
               variant="outlined"
@@ -33,6 +34,14 @@ export function ProdutosForm() {
               placeholder="Digite o código do produto"
               style={{ width: '100%' }}
               onChange={(e) => setCodProduto(e.target.value)}
+              value={codProduto}
+            /> */}
+
+            <InputForm
+              label={'Código do Produto'}
+              placeholder="Digite o código do produto"
+              style={{ width: '100%' }}
+              onChanges={setCodProduto}
               value={codProduto}
             />
           </Grid>
