@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import { useProdutoService } from '@/http';
 import { Produto } from '@/models/produtos/produtosModel';
+import { convereterEmBigDecimal } from '@/utils/parserValues';
 
 import InputForm from '../common/InputForm';
 import { Sidebar } from '../layout/sidebar/Sidebar';
@@ -20,17 +21,21 @@ export function ProdutosForm() {
 
   const send = () => {
     const produto: Produto = {
-      id: '0',
-      dataCadastro: '12/11/2000',
+      id,
       codProduto,
-      preco: parseFloat(preco),
+      preco: convereterEmBigDecimal(preco),
       nome,
       descricao,
     };
-    service.salvar(produto).then((succes) => {
-      setId(succes.id);
-      setDataCadastro(succes.dataCadastro);
-    });
+
+    if (id) {
+      service.atualizarProduto(produto);
+    } else {
+      service.salvar(produto).then((succes) => {
+        setId(succes.id);
+        setDataCadastro(succes.dataCadastro);
+      });
+    }
   };
 
   return (
@@ -70,6 +75,7 @@ export function ProdutosForm() {
               style={{ width: '100%' }}
               onChanges={setPreco}
               value={preco}
+              isParser
             />
           </Grid>
         </Grid>
@@ -102,7 +108,7 @@ export function ProdutosForm() {
             }}
             onClick={send}
           >
-            Salvar
+            {id ? 'Atualizar' : 'Salvar'}
           </Button>
 
           <Button variant="contained" style={{ color: 'black', backgroundColor: '#03a9f4' }}>
