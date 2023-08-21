@@ -1,5 +1,5 @@
 'use client';
-import { Box, Button, Grid, TextField } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import React, { useState } from 'react';
 
 import InputForm from '../common/InputForm';
@@ -21,22 +21,12 @@ export function ProdutosForm() {
 
     console.log(produto);
   };
+
   return (
     <Sidebar titulo="Produtos" tituloCard="Cadastro de produtos">
       <Box width={'100%'}>
         <Grid container justifyContent={'space-between'}>
           <Grid item width={'49%'}>
-            {/* <TextField
-              id="outlined-basic"
-              label="Código do Produto"
-              variant="outlined"
-              type="text"
-              placeholder="Digite o código do produto"
-              style={{ width: '100%' }}
-              onChange={(e) => setCodProduto(e.target.value)}
-              value={codProduto}
-            /> */}
-
             <InputForm
               label={'Código do Produto'}
               placeholder="Digite o código do produto"
@@ -47,40 +37,31 @@ export function ProdutosForm() {
           </Grid>
 
           <Grid item width={'49%'}>
-            <TextField
-              id="outlined-basic"
+            <InputForm
               label="Preço do Produto"
-              variant="outlined"
-              type="text"
               placeholder="Digite o preço do produto"
               style={{ width: '100%' }}
-              onChange={(e) => setPreco(e.target.value)}
+              onChanges={setPreco}
               value={preco}
             />
           </Grid>
         </Grid>
 
-        <TextField
-          id="outlined-basic"
+        <InputForm
           label="Nome do Produto"
-          variant="outlined"
-          type="text"
           placeholder="Digite o nome do produto"
           style={{ width: '100%', marginTop: '35px' }}
-          onChange={(e) => setNome(e.target.value)}
+          onChanges={setNome}
           value={nome}
         />
 
-        <TextField
-          id="outlined-basic"
+        <InputForm
           label="Descrição do Produto"
-          variant="outlined"
-          type="text"
           placeholder="Digite a descrição"
           multiline
           rows={4}
           style={{ width: '100%', marginTop: '35px' }}
-          onChange={(e) => setDescricao(e.target.value)}
+          onChanges={setDescricao}
           value={descricao}
         />
 
