@@ -1,9 +1,11 @@
 'use client';
-import { Box, Button, Grid } from '@mui/material';
+import { Alert, Box, Button, Grid } from '@mui/material';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import { useProdutoService } from '@/http';
 import { Produto } from '@/models/produtos/produtosModel';
+import { produtoValidationSchema } from '@/schema/produto/produtoValidationSchema';
 import { convereterEmBigDecimal } from '@/utils/parserValues';
 
 import InputForm from '../common/InputForm';
@@ -16,8 +18,13 @@ export function ProdutosForm() {
   const [preco, setPreco] = useState<string>('');
   const [nome, setNome] = useState<string | undefined>('');
   const [descricao, setDescricao] = useState<string | undefined>('');
+  const [errors, setErrors] = useState<string>('');
 
   const service = useProdutoService();
+
+  const handleClose = () => {
+    setErrors('');
+  };
 
   const send = () => {
     const produto: Produto = {
@@ -28,19 +35,33 @@ export function ProdutosForm() {
       descricao,
     };
 
-    if (id) {
-      service.atualizarProduto(produto);
-    } else {
-      service.salvar(produto).then((succes) => {
-        setId(succes.id);
-        setDataCadastro(succes.dataCadastro);
+    produtoValidationSchema
+      .validate(produto)
+      .then(() => {
+        if (id) {
+          service.atualizarProduto(produto);
+        } else {
+          service.salvar(produto).then((succes) => {
+            setErrors('');
+            setId(succes.id);
+            setDataCadastro(succes.dataCadastro);
+            toast.success('Produto salvo com sucesso!', { duration: 1600 });
+          });
+        }
+      })
+      .catch((errors) => {
+        setErrors(errors?.message);
       });
-    }
   };
 
   return (
     <Sidebar titulo="Produtos" tituloCard="Cadastro de produtos">
       <Box width={'100%'}>
+        {errors && (
+          <Alert severity="error" style={{ marginBottom: '23px' }} onClose={handleClose}>
+            {errors}
+          </Alert>
+        )}
         {id && (
           <Grid container justifyContent={'space-between'} style={{ marginBottom: '30px' }}>
             <Grid item width={'49%'}>

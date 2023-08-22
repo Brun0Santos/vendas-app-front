@@ -69,7 +69,7 @@ export const MainUl = styled.ul`
   }
 
   i {
-    font-size: 16px;
+    font-size: 13px;
   }
 `;
 
@@ -89,6 +89,7 @@ export const HeaderContainer = styled.div`
   border-radius: 10px;
   padding: 10px 2rem;
   margin-bottom: 1rem;
+  margin-top: 0.7rem;
   box-shadow: 0px 19px 40px rgba(0, 0, 0, 0.09);
 
   img {
@@ -116,7 +117,7 @@ export const SearchBox = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 12px;
+  padding: 5px 10px;
   height: 37px;
 
   input {
@@ -132,6 +133,10 @@ export const SearchBox = styled.div`
 
   i:hover {
     transform: scale(1.2);
+  }
+
+  .expanded {
+    width: 15rem;
   }
 `;
 

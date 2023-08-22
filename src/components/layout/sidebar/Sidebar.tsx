@@ -2,7 +2,7 @@
 import { Avatar, Icon } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { IconType } from 'react-icons';
 import { AiFillHome } from 'react-icons/ai';
 import { BsGraphUp, BsSearch } from 'react-icons/bs';
@@ -49,6 +49,16 @@ const TitleMenuLink = ({ icon, href, classLi, titleMenu }: LinkItemProps) => {
 };
 
 export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps) {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const toggleMenu = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const toggleMenuDisabled = () => {
+    setIsExpanded(false);
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <SidebarMenu>
@@ -83,7 +93,13 @@ export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps
               <i>
                 <BsSearch />
               </i>
-              <input type="text" placeholder="Search" />
+              <input
+                type="text"
+                placeholder="Search"
+                className={`menu ${isExpanded ? 'expanded' : ''}`}
+                onMouseOut={toggleMenuDisabled}
+                onClick={toggleMenu}
+              />
             </SearchBox>
             {/* <Image src={'/student.png'} alt="Minha Imagem" width={300} height={300} /> */}
             <Avatar>BR</Avatar>
