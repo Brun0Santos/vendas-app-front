@@ -1,7 +1,7 @@
-import ProdutosForm from '@/components';
+import TabelaProdutos from '@/components/produtos/lista/TabelaProdutos';
 
 function page() {
-  return <ProdutosForm />;
+  return <TabelaProdutos />;
 }
 
 export default page;

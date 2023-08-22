@@ -1,5 +1,6 @@
 'use client';
 import { Alert, Box, Button, Grid } from '@mui/material';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -8,8 +9,8 @@ import { Produto } from '@/models/produtos/produtosModel';
 import { produtoValidationSchema } from '@/schema/produto/produtoValidationSchema';
 import { convereterEmBigDecimal } from '@/utils/parserValues';
 
-import InputForm from '../common/InputForm';
-import { Sidebar } from '../layout/sidebar/Sidebar';
+import InputForm from '../../common/InputForm';
+import { Sidebar } from '../../layout/sidebar/Sidebar';
 
 export function ProdutosForm() {
   const [id, setId] = useState<string>();
@@ -39,7 +40,9 @@ export function ProdutosForm() {
       .validate(produto)
       .then(() => {
         if (id) {
+          setErrors('');
           service.atualizarProduto(produto);
+          toast.success('Produto atualizado com sucesso!', { duration: 1600 });
         } else {
           service.salvar(produto).then((succes) => {
             setErrors('');
@@ -124,7 +127,7 @@ export function ProdutosForm() {
             variant="contained"
             style={{
               marginRight: '10px',
-              backgroundColor: 'rgba(149, 198, 117, 255)',
+              backgroundColor: '#03a9f4',
               color: 'black',
             }}
             onClick={send}
@@ -132,9 +135,11 @@ export function ProdutosForm() {
             {id ? 'Atualizar' : 'Salvar'}
           </Button>
 
-          <Button variant="contained" style={{ color: 'black', backgroundColor: '#03a9f4' }}>
-            Voltar
-          </Button>
+          <Link href={'/consultas/produtos'}>
+            <Button variant="contained" style={{ color: 'black', backgroundColor: '#c7c7c7' }}>
+              Voltar
+            </Button>
+          </Link>
         </div>
       </Box>
     </Sidebar>

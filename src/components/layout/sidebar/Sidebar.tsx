@@ -4,9 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { IconType } from 'react-icons';
-import { AiFillHome } from 'react-icons/ai';
-import { BsGraphUp, BsSearch } from 'react-icons/bs';
-import { FiLogOut, FiSettings, FiShoppingCart, FiUsers } from 'react-icons/fi';
+import { AiFillHome, AiFillSetting } from 'react-icons/ai';
+import { BsFileBarGraphFill, BsGraphUp, BsSearch } from 'react-icons/bs';
+import { FaShoppingCart, FaUserFriends } from 'react-icons/fa';
+import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi';
 
 import {
   BodyContainer,
@@ -63,19 +64,19 @@ export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps
     <div style={{ display: 'flex' }}>
       <SidebarMenu>
         <Logo>
-          <Image src={'/shopify.png'} alt="Minha Imagem" width={300} height={300} />
+          <Image src={'/blockchain.png'} alt="Minha Imagem" width={300} height={300} />
         </Logo>
 
         <MainUl>
           <TitleMenuLink href="/#" icon={AiFillHome} titleMenu="Home" classLi="active" />
 
-          <TitleMenuLink href="/consultas/produtos" icon={FiShoppingCart} titleMenu="Produtos" />
+          <TitleMenuLink href="/consultas/produtos" icon={FaShoppingCart} titleMenu="Produtos" />
 
-          <TitleMenuLink href="google.com.br" icon={FiUsers} titleMenu="Clientes" />
+          <TitleMenuLink href="google.com.br" icon={FaUserFriends} titleMenu="Clientes" />
 
-          <TitleMenuLink href="google.com.br" icon={BsGraphUp} titleMenu="Vendas" />
+          <TitleMenuLink href="google.com.br" icon={BsFileBarGraphFill} titleMenu="Vendas" />
 
-          <TitleMenuLink href="google.com.br" icon={FiSettings} titleMenu="Config" />
+          <TitleMenuLink href="google.com.br" icon={AiFillSetting} titleMenu="Config" />
 
           <TitleMenuLink href="google.com.br" icon={FiLogOut} titleMenu="Sair" classLi="logout" />
         </MainUl>
@@ -101,8 +102,8 @@ export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps
                 onClick={toggleMenu}
               />
             </SearchBox>
-            {/* <Image src={'/student.png'} alt="Minha Imagem" width={300} height={300} /> */}
-            <Avatar>BR</Avatar>
+
+            <Avatar sx={{ bgcolor: 'rgba(139,80,200,255)' }}>BR</Avatar>
           </UserInfo>
         </HeaderContainer>
 

@@ -20,12 +20,12 @@ export const SidebarMenu = styled.div`
 `;
 
 export const Logo = styled.div`
-  height: 80px;
-  padding: 16px;
+  height: 84px;
+  padding-top: 25px;
 
   img {
-    width: 55px;
-    height: 55px;
+    width: 68px;
+    height: 68px;
   }
 `;
 
@@ -43,7 +43,7 @@ export const MainUl = styled.ul`
 
     &:hover,
     &.active {
-      background: rgba(149, 198, 117, 255);
+      background: #e8eaf6;
     }
 
     &.logout {
