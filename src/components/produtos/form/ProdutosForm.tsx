@@ -23,9 +23,7 @@ export function ProdutosForm() {
   const [errors, setErrors] = useState<string>('');
 
   const service = useProdutoService();
-
   const searchParams = useSearchParams();
-
   const searchId = searchParams.get('id');
 
   const handleClose = () => {

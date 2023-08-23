@@ -64,7 +64,7 @@ export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps
     <div style={{ display: 'flex' }}>
       <SidebarMenu>
         <Logo>
-          <Image src={'/blockchain.png'} alt="Minha Imagem" width={40} height={400} />
+          <Image src={'/blockchain.png'} alt="Minha Imagem" width={300} height={300} />
         </Logo>
 
         <MainUl>
