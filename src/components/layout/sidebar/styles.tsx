@@ -24,8 +24,8 @@ export const Logo = styled.div`
   padding-top: 25px;
 
   img {
-    width: 68px;
-    height: 68px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
@@ -157,13 +157,3 @@ export const CardContainer = styled.div`
   display: flex;
   width: 100%;
 `;
-
-// export const PaymentCard = styled.div`
-//   background: rgb(229, 223, 223);
-//   border-radius: 10px;
-//   padding: 1.2rem;
-//   width: 100%;
-//   height: 150px;
-//   display: flex;
-//   flex-direction: column;
-// `;

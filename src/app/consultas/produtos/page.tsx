@@ -1,4 +1,4 @@
-import TabelaProdutos from '@/components/produtos/lista/TabelaProdutos';
+import TabelaProdutos from '@/components/produtos/lista/ListaProdutos';
 
 function page() {
   return <TabelaProdutos />;

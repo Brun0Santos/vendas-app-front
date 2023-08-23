@@ -5,9 +5,9 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { IconType } from 'react-icons';
 import { AiFillHome, AiFillSetting } from 'react-icons/ai';
-import { BsFileBarGraphFill, BsGraphUp, BsSearch } from 'react-icons/bs';
+import { BsFileBarGraphFill, BsSearch } from 'react-icons/bs';
 import { FaShoppingCart, FaUserFriends } from 'react-icons/fa';
-import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi';
+import { FiLogOut } from 'react-icons/fi';
 
 import {
   BodyContainer,
