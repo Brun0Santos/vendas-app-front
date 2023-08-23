@@ -1,31 +1,28 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
 
-import { formatReal } from '@/utils/parserValues';
-
 interface InputProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChanges?: (value: any) => void;
   label: string;
   placeholder?: string;
-  isParser?: boolean;
+  functionParser?: (value: string) => string;
 }
 
 function InputForm({
   onChanges,
   label,
   placeholder,
-  isParser,
+  functionParser,
   ...props
 }: InputProps & TextFieldProps) {
   const isParserInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let value = e.target.value;
+    const value = e.target.value;
 
-    if (value && isParser) {
-      value = formatReal(value);
-    }
+    const functionParsers = (functionParser && functionParser(String(value))) || value;
+
     if (onChanges) {
-      onChanges(value);
+      onChanges(functionParsers);
     }
   };
 

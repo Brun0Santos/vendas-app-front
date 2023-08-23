@@ -1,13 +1,13 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Box, Button, Grid } from '@mui/material';
 import Link from 'next/link';
-import { send } from 'process';
 import React, { useState } from 'react';
 
 import InputForm from '@/components/common/InputForm';
 import { Sidebar } from '@/components/layout/sidebar/Sidebar';
 import { Cliente } from '@/models/clientes/clientesModel';
+import { formatCPF, formatData, formatTelefone } from '@/utils/parserValues';
 
 function ClientesForm() {
   const [codigoId, setCodigoId] = useState<string | undefined>('');
@@ -42,6 +42,7 @@ function ClientesForm() {
             {errors}
           </Alert>
         )} */}
+
         {codigoId && (
           <Grid container justifyContent={'space-between'} style={{ marginBottom: '30px' }}>
             <Grid item width={'49%'}>
@@ -77,7 +78,7 @@ function ClientesForm() {
               style={{ width: '100%' }}
               onChanges={setCpf}
               value={cpf}
-              isParser
+              functionParser={formatCPF}
             />
           </Grid>
 
@@ -88,6 +89,7 @@ function ClientesForm() {
               style={{ width: '100%' }}
               onChanges={setDataNascimento}
               value={dataNascimento}
+              functionParser={formatData}
             />
           </Grid>
         </Grid>
@@ -118,6 +120,7 @@ function ClientesForm() {
               style={{ width: '100%' }}
               onChanges={setTelefone}
               value={telefone}
+              functionParser={formatTelefone}
             />
           </Grid>
         </Grid>

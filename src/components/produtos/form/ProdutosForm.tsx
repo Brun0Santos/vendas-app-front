@@ -115,7 +115,7 @@ export function ProdutosForm() {
               style={{ width: '100%' }}
               onChanges={setPreco}
               value={preco}
-              isParser
+              functionParser={formatReal}
             />
           </Grid>
         </Grid>
