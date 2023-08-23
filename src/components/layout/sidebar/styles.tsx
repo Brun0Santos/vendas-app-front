@@ -24,8 +24,8 @@ export const Logo = styled.div`
   padding-top: 25px;
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 59px;
+    height: 59px;
   }
 `;
 

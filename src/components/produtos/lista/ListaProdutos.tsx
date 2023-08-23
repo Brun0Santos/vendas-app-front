@@ -3,6 +3,7 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import { Box, Button } from '@mui/material';
 import { AxiosResponse } from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -18,10 +19,20 @@ function ListaProdutos() {
   const { data: response } = useSWR<AxiosResponse<Produto[]>>('/api/produtos', (url) =>
     httpCliente.get(url),
   );
+  const router = useRouter();
 
   useEffect(() => {
     setListaProduto(response?.data || []);
   }, [response]);
+
+  const handleOnEdit = (produto: Produto) => {
+    const url: string = `/cadastros/produtos?id=${produto.id}`;
+    router.push(url);
+  };
+
+  const handleOnDelete = (produto: Produto) => {
+    console.log(produto);
+  };
 
   return (
     <Sidebar titulo="Produtos" tituloCard="Lista de Produtos">
@@ -40,7 +51,7 @@ function ListaProdutos() {
             Novo Produto
           </Button>
         </Link>
-        <TabelaProduto produtos={listaProdutos} />
+        <TabelaProduto produtos={listaProdutos} onEdit={handleOnEdit} onDelete={handleOnDelete} />
         <Loaders isRender={!response} />
       </Box>
     </Sidebar>

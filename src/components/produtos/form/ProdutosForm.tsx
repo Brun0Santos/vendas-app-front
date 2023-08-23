@@ -1,13 +1,14 @@
 'use client';
 import { Alert, Box, Button, Grid } from '@mui/material';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { useProdutoService } from '@/http';
 import { Produto } from '@/models/produtos/produtosModel';
 import { produtoValidationSchema } from '@/schema/produto/produtoValidationSchema';
-import { convereterEmBigDecimal } from '@/utils/parserValues';
+import { convereterEmBigDecimal, formatReal } from '@/utils/parserValues';
 
 import InputForm from '../../common/InputForm';
 import { Sidebar } from '../../layout/sidebar/Sidebar';
@@ -23,9 +24,26 @@ export function ProdutosForm() {
 
   const service = useProdutoService();
 
+  const searchParams = useSearchParams();
+
+  const searchId = searchParams.get('id');
+
   const handleClose = () => {
     setErrors('');
   };
+
+  useEffect(() => {
+    if (searchId) {
+      service.getProdutoFromId(String(searchId)).then((res) => {
+        setId(res.id);
+        setDataCadastro(res.dataCadastro);
+        setCodProduto(res.codProduto);
+        setPreco(formatReal(String(res.preco)));
+        setNome(res.nome);
+        setDescricao(res.descricao);
+      });
+    }
+  }, [searchId]);
 
   const send = () => {
     const produto: Produto = {
