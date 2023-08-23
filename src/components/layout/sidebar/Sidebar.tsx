@@ -72,7 +72,7 @@ export function Sidebar({ children, titulo, subTitulo, tituloCard }: LayoutProps
 
           <TitleMenuLink href="/consultas/produtos" icon={FaShoppingCart} titleMenu="Produtos" />
 
-          <TitleMenuLink href="google.com.br" icon={FaUserFriends} titleMenu="Clientes" />
+          <TitleMenuLink href="/cadastros/clientes" icon={FaUserFriends} titleMenu="Clientes" />
 
           <TitleMenuLink href="google.com.br" icon={BsFileBarGraphFill} titleMenu="Vendas" />
 
