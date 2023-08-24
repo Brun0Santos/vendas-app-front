@@ -1,12 +1,15 @@
 'use client';
 
-import { Box, Button, Grid } from '@mui/material';
+import { Alert, Box, Button, Grid } from '@mui/material';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import InputForm from '@/components/common/InputForm';
 import { Sidebar } from '@/components/layout/sidebar/Sidebar';
+import { useClienteService } from '@/http/index';
 import { Cliente } from '@/models/clientes/clientesModel';
+import { clienteValidationSchema } from '@/schema/cliente/clienteValidationSchema';
 import { formatCPF, formatData, formatTelefone } from '@/utils/parserValues';
 
 function ClientesForm() {
@@ -18,6 +21,9 @@ function ClientesForm() {
   const [endereco, setEndereco] = useState<string | undefined>('');
   const [email, setEmail] = useState<string | undefined>('');
   const [telefone, setTelefone] = useState<string | undefined>('');
+  const [errors, setErrors] = useState<string>('');
+
+  const service = useClienteService();
 
   const send = () => {
     const cliente: Cliente = {
@@ -30,18 +36,46 @@ function ClientesForm() {
       dataCadastro,
       telefone,
     };
+    try {
+      clienteValidationSchema
+        .validate(cliente)
+        .then(() => {
+          if (codigoId) {
+            service
+              .atualizarCliente(cliente)
+              .then(() => {
+                toast.success('Cliente atualizado com sucesso!');
+              })
+              .catch(() => toast.error('Erro ao tentar atualizar cliente!'));
+          } else {
+            service.salvar(cliente).then((res) => {
+              setErrors('');
+              toast.success('Cliente salvo com sucesso!');
+              setCodigoId(res.id);
+              setDataCadastro(res.dataCadastro);
+            });
+          }
+        })
+        .catch((errors) => {
+          setErrors(errors?.message);
+        });
+    } catch (e) {
+      toast.error('Erro inesperado, entre em contato com o admin do sistema!');
+    }
+  };
 
-    console.log(cliente);
+  const handleClose = () => {
+    setErrors('');
   };
 
   return (
     <Sidebar titulo="Clientes" tituloCard="Cadastro de clientes">
       <Box width={'100%'}>
-        {/* {errors && (
+        {errors && (
           <Alert severity="error" style={{ marginBottom: '23px' }} onClose={handleClose}>
             {errors}
           </Alert>
-        )} */}
+        )}
 
         {codigoId && (
           <Grid container justifyContent={'space-between'} style={{ marginBottom: '30px' }}>
@@ -68,6 +102,7 @@ function ClientesForm() {
               style={{ width: '100%' }}
               onChanges={setNome}
               value={nome}
+              required
             />
           </Grid>
 
@@ -79,6 +114,7 @@ function ClientesForm() {
               onChanges={setCpf}
               value={cpf}
               functionParser={formatCPF}
+              required
             />
           </Grid>
 
@@ -90,6 +126,7 @@ function ClientesForm() {
               onChanges={setDataNascimento}
               value={dataNascimento}
               functionParser={formatData}
+              required
             />
           </Grid>
         </Grid>
@@ -100,6 +137,7 @@ function ClientesForm() {
           style={{ width: '100%', marginTop: '35px' }}
           onChanges={setEndereco}
           value={endereco}
+          required
         />
 
         <Grid container justifyContent={'space-between'} style={{ marginTop: '30px' }}>
@@ -110,6 +148,7 @@ function ClientesForm() {
               style={{ width: '100%' }}
               onChanges={setEmail}
               value={email}
+              required
             />
           </Grid>
 
@@ -121,6 +160,7 @@ function ClientesForm() {
               onChanges={setTelefone}
               value={telefone}
               functionParser={formatTelefone}
+              required
             />
           </Grid>
         </Grid>
